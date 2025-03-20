@@ -25,7 +25,7 @@ java PortChecker ./pathTofile.txt
 > 
 > 127.0.0.1 9080
 > 
-> 127.0.0.1,69700
+> 127.0.0.1,6970
 > 
 > 127.0.0.1	9222
 > 
@@ -35,5 +35,5 @@ java PortChecker ./pathTofile.txt
 > 
 > //Also works with :
 > 
-> localhost:9223
+> www.google.com:443
 
