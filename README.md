@@ -1,9 +1,9 @@
 # port-checker
 Connect to destination address(es) to validate connectivity.  Supports ip address or FQDN (fully qualified domain name).
 
-This class is intentionally using a default package and all in 1 file to simplify being compiled remotely such as in a limited access environment.
+This class is intentionally using a default package and all in 1 file to simplify being compiled remotely such as in a limited access environment (copy/paste to editor).
 
-Support for java 8 is intentional to allow legacy environment support.  Several alternatives exist but aren't always available.  All you need is java and/or javac.
+Support for java 8 is intentional to allow legacy environment support.  Several alternatives to this exist but aren't always available nor parallel processed.  All you need is java and/or javac if you can't upload a .class file.
 
 ## Usage
 
@@ -39,16 +39,18 @@ java PortChecker ./pathTofile.txt
 
 ## Sample output
 
-> Failed connecting to host=127.0.0.1, port=9000
-> 
-> Failed connecting to host=127.0.0.1, port=9080
->
-> Failed connecting to host=127.0.0.1, port=6970
-> 
+_Notice successes are all at the top since failures take longer and processing is done in parallel_
+
 > Success connecting to host=127.0.0.1, port=9222
 > 
 > Success connecting to host=127.0.0.1, port=9528
 > 
 > Success connecting to host=www.google.com, port=443
+> 
+> Failed connecting to host=127.0.0.1, port=9000
+> 
+> Failed connecting to host=127.0.0.1, port=9080
+>
+> Failed connecting to host=127.0.0.1, port=6970
 > 
 
