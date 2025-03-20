@@ -1,9 +1,9 @@
 # port-checker
-Connect to destination address(es) (host and a port) to validate connectivity.  Call by ip address or hostname.
+Connect to destination address(es) to validate connectivity.  Supports ip address or FQDN (fully qualified domain name).
 
-This class is intentionally using default package and all in 1 file to simplify being compiled remotely.
+This class is intentionally using a default package and all in 1 file to simplify being compiled remotely such as in a limited access environment.
 
-Support for java 8 is intentional to allow legacy environment support.
+Support for java 8 is intentional to allow legacy environment support.  Several alternatives exist but aren't always available.  All you need is java and/or javac.
 
 ## Usage
 
