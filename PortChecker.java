@@ -1,9 +1,9 @@
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
 
 public class PortChecker {
@@ -30,17 +30,24 @@ public class PortChecker {
     }
 
     private static void processAddressesFromFile(String inputFile) {
-        try (BufferedReader reader = new BufferedReader
-                (new InputStreamReader(new FileInputStream(inputFile)))) {
-            //Loop through file and try to connect to all addresses
-            reader.lines()
-                    .filter(s -> s.matches("^[a-z0-9A-Z]+.*")) //allow comments / empty lines
-                    .map(DestinationAddress::new)
-                    .forEach(PortChecker::tryConnect);
+        List<String> fileLines = readFileLines(inputFile);
+
+        //Process entries in parallel for imporved speed:
+        fileLines.stream().parallel()
+                .filter(lineStart -> lineStart.matches("^[a-z0-9A-Z]+.*")) //allow comments / empty lines
+                .map(DestinationAddress::new)
+                .forEach(PortChecker::tryConnect);
+    }
+
+    private static List<String> readFileLines(String inputFile) {
+        List<String> fileLines;
+        try {
+            fileLines = Files.readAllLines(Paths.get(inputFile));
         } catch (IOException e) {
             System.err.println("Problem processing input file: " + inputFile);
             throw new RuntimeException(e);
         }
+        return fileLines;
     }
 
     private static void tryConnect(DestinationAddress destinationAddress) {
