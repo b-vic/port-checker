@@ -5,6 +5,8 @@ This class is intentionally using default package and all in 1 file to simplify 
 
 Support for java 8 is intentional to allow legacy environment support.
 
+## Usage
+
 **Compile:**
 
 javac PortChecker.java
@@ -17,22 +19,21 @@ _OR_
 
 java PortChecker ./pathTofile.txt
 
-# sample input file
+## Sample input file
 
-127.0.0.1      9000
-
-127.0.0.1 9080
-
-127.0.0.1,69700
-
-
-127.0.0.1	9222
-
-#Test env
-
-127.0.0.1,9528
-
-//Also works with :
-
-localhost:9223
+> 127.0.0.1      9000
+> 
+> 127.0.0.1 9080
+> 
+> 127.0.0.1,69700
+> 
+> 127.0.0.1	9222
+> 
+> #Test env
+> 
+> 127.0.0.1,9528
+> 
+> //Also works with :
+> 
+> localhost:9223
 
