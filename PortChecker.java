@@ -32,9 +32,9 @@ public class PortChecker {
     private static void processAddressesFromFile(String inputFile) {
         List<String> fileLines = readFileLines(inputFile);
 
-        //Process entries in parallel for imporved speed:
+        //Process entries in parallel for improved speed:
         fileLines.stream().parallel()
-                .filter(lineStart -> lineStart.matches("^[a-z0-9A-Z]+.*")) //allow comments / empty lines
+                .filter(lineStart -> lineStart.matches("^[a-z0-9A-Z]+.*")) //allows comments / empty lines
                 .map(DestinationAddress::new)
                 .forEach(PortChecker::tryConnect);
     }
@@ -67,7 +67,7 @@ public class PortChecker {
         private final int port;
 
         public DestinationAddress(String hostAndPort) {
-            //Allow any of the usual delimiters: space(s), comma or tab:
+            //Allow any of the usual delimiters: space(s), comma, tab or colon:
             String[] values = hostAndPort.split("[ ,\t:]+");
             this.host = values[0];
             this.port = Integer.parseInt(values[1]);
