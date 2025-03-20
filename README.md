@@ -40,9 +40,15 @@ java PortChecker ./pathTofile.txt
 ## Sample output
 
 > Failed connecting to host=127.0.0.1, port=9000
+> 
 > Failed connecting to host=127.0.0.1, port=9080
+>
 > Failed connecting to host=127.0.0.1, port=6970
+> 
 > Success connecting to host=127.0.0.1, port=9222
+> 
 > Success connecting to host=127.0.0.1, port=9528
+> 
 > Success connecting to host=www.google.com, port=443
+> 
 
