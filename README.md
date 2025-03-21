@@ -1,9 +1,9 @@
 # port-checker
-Connect to destination address(es) validate connectivity from command line.  Supports IP address or FQDN (fully qualified domain name) address.
+Connect to destination address(es) to validate connectivity from command line.  Supports IP address or FQDN (fully qualified domain name) address.
 
 Several alternatives to this exist but are not always available nor processed in parallel.  All you need is java to run and javac if you can't upload a .class file to your server.
 
-Useful for application migrations and firewall testing.
+Useful for application migrations and firewall testing. Single class / default package in order to simplify remote compilation if needed.
 
 ## Usage
 
@@ -23,7 +23,7 @@ java PortChecker ./pathTofile.txt
 
 ### Supported comments and host + port separators:
 
-> //Tab
+> //Tab:
 > 
 > 127.0.0.1      8000
 > 
@@ -31,13 +31,13 @@ java PortChecker ./pathTofile.txt
 > 
 > 127.0.0.1 9080
 >
-> --comma
+> --comma:
 > 
 > 127.0.0.1,6970
 > 
 > 127.0.0.1,9528
 > 
-> //Also works with :
+> //Also works with colon:
 > 
 > www.google.com:443
 > 
