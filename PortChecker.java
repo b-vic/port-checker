@@ -4,6 +4,7 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -14,17 +15,21 @@ public class PortChecker {
     private static final Pattern VALID_START_OF_LINE = Pattern.compile("^[a-z0-9]", Pattern.CASE_INSENSITIVE);
     private static final Pattern SERVER_PORT_DELIMITERS = Pattern.compile("[ ,\t:]+");
 
+    private List<DestinationAddress> destinationAddresses = new ArrayList<>();
+
     /**
      * Usage: java PortChecker 127.0.0.1 8080 OR java PortChecker ./filename.txt
      */
     public static void main(String[] args) {
-
-        List<DestinationAddress> destinationAddresses = processInputs(args);
-        processAddresses(destinationAddresses);
-
+        PortChecker portChecker = new PortChecker(args);
+        portChecker.connectToAddresses();
     }
 
-    private static List<DestinationAddress> processInputs(String[] args) {
+    public PortChecker(String[] args) {
+        this.destinationAddresses = processInputArgs(args);
+    }
+
+    private List<DestinationAddress> processInputArgs(String[] args) {
         final List<DestinationAddress> addressList;
         switch (args.length) {
             case 1:
@@ -40,7 +45,7 @@ public class PortChecker {
 
     }
 
-    private static void processAddresses(List<DestinationAddress> destinationAddresses) {
+    private void connectToAddresses() {
         int successCount =
                 destinationAddresses.stream()
                         .parallel()
@@ -50,7 +55,7 @@ public class PortChecker {
         System.out.printf("==========%nSuccessfully connected to: %d of %d addresses %n", successCount, destinationAddresses.size());
     }
 
-    private static List<DestinationAddress> readAndFilterLines(String inputFile) {
+    private List<DestinationAddress> readAndFilterLines(String inputFile) {
         final Path pathToFile = getFile(inputFile);
         final List<DestinationAddress> addressLines;
         try {
@@ -65,7 +70,7 @@ public class PortChecker {
         return addressLines;
     }
 
-    private static Path getFile(String inputFile) {
+    private Path getFile(String inputFile) {
         final Path pathToFile = Paths.get(inputFile);
         if (!Files.exists(pathToFile)) {
             throw new RuntimeException(String.format("There is a problem accessing the input file: %s", inputFile));
